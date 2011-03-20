@@ -12,7 +12,7 @@
 				<h2 class="entry-title">Nothing Found</h2>
 				<div class="entry-content">
 					<p>Sorry, but nothing matched your search criteria. Please try again with some different keywords.</p>
-					{{ get_search_form() }}
+					{{ site.search }}
 				</div>
 			</div>
 		{% endif %}

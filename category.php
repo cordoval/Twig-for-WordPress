@@ -9,12 +9,12 @@
 			{% if category_description() %}
 				<div class="archive-meta">{{ category_description() }}</div>
 			{% endif %}
-			{% include "loop.php" %}
 		{% endfor %}
+
+		{% include "loop.php" %}
 	</div>
 </div>
 
 {{ get_sidebar() }}
-{{ get_footer() }}
 
 {% endblock %}

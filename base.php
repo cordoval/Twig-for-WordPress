@@ -1,16 +1,16 @@
-{% autoescape false %}
 <!DOCTYPE html>
-<html {{ language_attributes() }}>
+<html {{ site.language }}>
+
 <head>
-<meta charset="{{ bloginfo.charset }}" />
+<meta charset="{{ site.charset }}" />
 <title>{% block title %}{% endblock %}</title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" type="text/css" media="all" href="{{ bloginfo.stylesheet_url }}" />
-<link rel="pingback" href="{{ bloginfo.pingback_url }}" />
+<link rel="stylesheet" type="text/css" media="all" href="{{ site.stylesheet_url }}" />
+<link rel="pingback" href="{{ site.pingback_url }}" />
 <!-- 
 <?php
 
-	ADD THIS TO THE WP_HEAD ACTION - NOT SURE WHY IT"S NOT THERE ALREADY
+	ADD THIS TO THE WP_HEAD ACTION - NOT SURE WHY IT'S NOT THERE ALREADY
 
 	/* We add some JavaScript to pages with the comment form
 	 * to support sites with threaded comments (when in use).
@@ -20,7 +20,7 @@
 
 ?>
 -->
-{{ wp_head() }}
+{{ site.head }}
 </head>
 
 <body {{ body_class() }}>
@@ -29,7 +29,7 @@
 		<div id="masthead">
 			<div id="branding" role="banner">
 				{% block heading %}{% endblock %}
-				<div id="site-description">{{ bloginfo.description }}</div>
+				<div id="site-description">{{ site.description }}</div>
 				<!--
 
 				<?php
@@ -64,8 +64,8 @@
 			{{ get_sidebar('footer') }}
 
 			<div id="site-info">
-				<a href="{{ home_url('/') }}" title="{{ bloginfo.name }}" rel="home">
-					{{ bloginfo.name }}
+				<a href="{{ site.home }}" title="{{ site.name }}" rel="home">
+					{{ site.name }}
 				</a>
 			</div>
 
@@ -78,9 +78,8 @@
 	</div>
 </div>
 
-{{ wp_footer() }}
+{{ site.foot }}
 
 </body>
-</html>
 
-{% endautoescape %}
+</html>

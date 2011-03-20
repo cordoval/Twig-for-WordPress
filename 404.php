@@ -1,6 +1,6 @@
 {% extends "base.php" %}
 
-{% block title %}{{ bloginfo.name }}{% endblock %}
+{% block title %}{{ site.name }}{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
 			<h1 class="entry-title">Not Found</h1>
 			<div class="entry-content">
 				<p>Apologies, but the page you requested could not be found. Perhaps searching will help.</p>
-				{{ get_search_form() }}
+				{{ site.search }}
 			</div>
 		</div>
 	</div>
