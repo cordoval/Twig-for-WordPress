@@ -1,12 +1,12 @@
 {% extends "base.php" %}
 
-{% block title %}{{ site.name }} | {{ site.description }}{% endblock %}
+{% block title %}{{ site.bloginfo('name') }} | {{ site.get_bloginfo('description','display') }}{% endblock %}
 
 {% block heading %}
 
 	<h1 id="site-title">
 		<span>
-			<a href="{{ site.home }}" title="{{ site.name|e }}" rel="home">{{ site.name }}</a>
+			<a href="{{ site.esc_url(site.home_url('/')) }}" title="{{ site.bloginfo('name')|e }}" rel="home">{{ site.bloginfo('name') }}</a>
 		</span>
 	</h1>
 
@@ -20,6 +20,6 @@
 	</div>
 </div>
 
-{{ get_sidebar() }}
+{{ site.get_sidebar }}
 
 {% endblock %}

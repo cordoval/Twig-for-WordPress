@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html {{ site.language }}>
+<html {{ site.language_attributes }}>
 
 <head>
-<meta charset="{{ site.charset }}" />
+<meta charset="{{ site.bloginfo('charset') }}" />
 <title>{% block title %}{% endblock %}</title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" type="text/css" media="all" href="{{ site.stylesheet_url }}" />
-<link rel="pingback" href="{{ site.pingback_url }}" />
+<link rel="stylesheet" type="text/css" media="all" href="{{ site.bloginfo('stylesheet_url') }}" />
+<link rel="pingback" href="{{ site.bloginfo('pingback_url') }}" />
 <!-- 
 <?php
 
@@ -20,16 +20,16 @@
 
 ?>
 -->
-{{ site.head }}
+{#{ site.get_header }#}
 </head>
 
-<body {{ body_class() }}>
+<body {{ site.body_class() }}>
 <div id="wrapper" class="hfeed">
 	<div id="header">
 		<div id="masthead">
 			<div id="branding" role="banner">
 				{% block heading %}{% endblock %}
-				<div id="site-description">{{ site.description }}</div>
+				<div id="site-description">{{ site.get_bloginfo('description','display') }}</div>
 				<!--
 
 				<?php
@@ -50,7 +50,7 @@
 
 			<div id="access" role="navigation">
 				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-				{{ wp_nav_menu( {"container_class": "menu-header", "theme_location" : "primary"} ) }}
+				{{ site.wp_nav_menu( {"container_class": "menu-header", "theme_location" : "primary"} ) }}
 			</div>
 		</div>
 	</div>
@@ -61,11 +61,11 @@
 
 	<div id="footer" role="contentinfo">
 		<div id="colophon">
-			{{ get_sidebar('footer') }}
+			{{ site.get_sidebar('footer') }}
 
 			<div id="site-info">
-				<a href="{{ site.home }}" title="{{ site.name }}" rel="home">
-					{{ site.name }}
+				<a href="{{ site.esc_url(site.home_url('/'))}}" title="{{ site.bloginfo('name') }}" rel="home">
+					{{ site.bloginfo('name') }}
 				</a>
 			</div>
 
@@ -78,7 +78,7 @@
 	</div>
 </div>
 
-{{ site.foot }}
+{#{ site.get_footer }#}
 
 </body>
 

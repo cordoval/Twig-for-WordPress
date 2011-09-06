@@ -394,8 +394,10 @@ class TWIG_Comment {
 	}
 }
 
+use Sf2Plugins\TwigPlugin;
+
 function twigTemplates($wpTemplate) {
-	global $wp_query;
+	/*global $wp_query;
 	
 	// Configure site
 	$site = new TWIG_Site();
@@ -416,6 +418,7 @@ function twigTemplates($wpTemplate) {
 	$twig = new Twig_Environment($loader, array(
 		'cache' => false
 	));
+
 	
 	// Pass required WordPress functions through
 	// Aim is to reduce this as much as possible by using above classes
@@ -443,7 +446,7 @@ function twigTemplates($wpTemplate) {
 	$twig->addFunction('comment_class', new Twig_Function_Function('comment_class'));
 	$twig->addFunction('comment_form', new Twig_Function_Function('comment_form'));
 	$twig->addFunction('category_description', new TWIG_Function_Function('category_description'));
-	
+
 	// Load the template file in
 	$template = $twig->loadTemplate(basename($wpTemplate));
 	
@@ -455,7 +458,15 @@ function twigTemplates($wpTemplate) {
 			'posts' => $posts
 		)
 	);
-	exit;
+	exit;*/
+
+    $site = new TwigPlugin();
+    $loader = new Twig_Loader_Filesystem(__DIR__);
+    $twig = new Twig_Environment($loader, array(
+            'cache' => false
+        ));
+    $template = $twig->loadTemplate(basename($wpTemplate));
+    $template->display(array('site' => $site));
 }
 
 add_action('template_include', 'twigTemplates');
