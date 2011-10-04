@@ -8,7 +8,7 @@
 
 		<?php if ( ! empty( $post->post_parent ) ) : ?>
 			<p class="page-title">
-				<a href="{{ get_permalink( post.post_parent ) }}" title="Return to {{ get_the_title( $post->post_parent ) }}" rel="gallery">
+				<a href="{{ site.get_permalink( post.post_parent ) }}" title="Return to {{ site.get_the_title( $post->post_parent ) }}" rel="gallery">
 					<span class="meta-nav">&larr;</span> {{ get_the_title( post.post_parent ) }}
 				</a>
 			</p>

@@ -1,7 +1,5 @@
 {% extends "base.php" %}
 
-{% block title %}{{ site.name }}{% endblock %}
-
 {% block content %}
 
 <div id="container">

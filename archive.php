@@ -6,11 +6,11 @@
 	<div id="content" role="main">
 		<h1 class="page-title">
 			{% if request.is_day %}
-				Daily Archives: <span>{{ request.date|date("d/M/Y") }}</span>
+				Daily Archives: <span>{{ site.date|date("d/M/Y") }}</span>
 			{% elseif request.is_month %}
-				Monthly Archives: <span>{{ request.date|date("F Y") }}</span>
+				Monthly Archives: <span>{{ site.date|date("F Y") }}</span>
 			{% elseif request.is_year %}
-				Yearly Archives: <span>{{ request.date|date("Y") }}</span>
+				Yearly Archives: <span>{{ site.date|date("Y") }}</span>
 			{% else %}
 				Blog Archives
 			{% endif %}
@@ -20,6 +20,6 @@
 	</div>
 </div>
 
-{{ get_sidebar() }}
+{{ site.get_sidebar() }}
 
 {% endblock %}
