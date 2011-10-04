@@ -7,7 +7,7 @@
 		<ol class="commentlist">
 			{% for comment in post.comments %}
 				{% if comment.type == "normal" %}
-					<li {{ comment_class() }} id="li-comment-{{ comment.id }}">
+					<li {{ comment.comment_class() }} id="li-comment-{{ comment.id }}">
 						<div id="comment-{{ comment.id }}">
 							<div class="comment-author vcard">
 								<!--<?php echo get_avatar( $comment, 40 ); ?>-->
@@ -47,6 +47,6 @@
 	{% endif %}
 
 	{% if request.is_single %}
-		{{ comment_form() }}
+		{{ comment.comment_form() }}
 	{% endif %}
 </div>

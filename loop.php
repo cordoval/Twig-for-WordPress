@@ -10,7 +10,9 @@
 {% if posts %}
 
 	{% for post in posts %}
+
 		{% if post.format == "gallery" %}
+
 			<div id="post-{{ post.id }}" {{ site.post_class() }}>
 				<h2 class="entry-title"><a href="{{ site.post.permalink }}" title="Permalink to {{ site.post.post_title }}" rel="bookmark">{{ post.post_title }}</a></h2>
 	
@@ -77,7 +79,7 @@
 	
 		{% else %}
 			<div id="post-{{ post.id }}" {{ site.post_class() }}>
-				<h2 class="entry-title"><a href="{{ post.permalink }}" title="Permalink to {{ post.title }}" rel="bookmark">{{ post.title }}</a></h2>
+				<h2 class="entry-title"><a href="{{ post.permalink }}" title="Permalink to {{ post.title }}" rel="bookmark">{{ post.post_title }}</a></h2>
 	
 				<div class="entry-meta">
 					<span class="meta-prep meta-prep-author">Posted on</span>
@@ -86,13 +88,13 @@
 					<span class="author vcard"><a class="url fn n" href="{{ post.author.url }}" title="View all posts by {{ post.author.name }}">{{ post.author.name }}</a></span>
 				</div>
 	
-				{% if request.is_archive or request.is_search %}
+				{% if site.is_archive or site.is_search %}
 					<div class="entry-summary">
-						{{ post.excerpt }}
+						{{ post.post_excerpt }}
 					</div>
 				{% else %}
 					<div class="entry-content">
-						{{ post.content }}
+						{{ post.post_content }}
 						{{ site.wp_link_pages({'before' : '<div class="page-link">Pages:', 'after' : '</div>'}) }}
 					</div>
 				{% endif %}

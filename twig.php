@@ -459,14 +459,19 @@ function twigTemplates($wpTemplate) {
 		)
 	);
 	exit;*/
+    global $wp_query;
 
     $site = new TwigPlugin();
+
+    $posts = $wp_query->posts;
+
     $loader = new Twig_Loader_Filesystem(__DIR__);
     $twig = new Twig_Environment($loader, array(
-            'cache' => false
+            'cache' => false,
         ));
+    $twig->enableDebug();
     $template = $twig->loadTemplate(basename($wpTemplate));
-    $template->display(array('site' => $site));
+    $template->display(array('site' => $site, 'posts' => $posts));
 }
 
 add_action('template_include', 'twigTemplates');

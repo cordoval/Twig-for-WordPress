@@ -6,12 +6,12 @@
 	<div id="content" role="main">
 		{% for post in posts %}
 			<div id="nav-above" class="navigation">
-				<div class="nav-previous">{{ previous_post_link('%link', '<span class="meta-nav">&larr;</span> %title') }}</div>
-				<div class="nav-next">{{ next_post_link('%link', '%title <span class="meta-nav">&rarr;</span>') }}</div>
+				<div class="nav-previous">{{ site.previous_post_link('%link', '<span class="meta-nav">&larr;</span> %title') }}</div>
+				<div class="nav-next">{{ site.next_post_link('%link', '%title <span class="meta-nav">&rarr;</span>') }}</div>
 			</div>
 			
-			<div id="post-{{ post.id }}" {{ post_class() }}>
-				<h1 class="entry-title">{{ post.title }}</h1>
+			<div id="post-{{ post.id }}" {{ site.post_class() }}>
+				<h1 class="entry-title">{{ post.post_title }}</h1>
 
 				<div class="entry-meta">
 					<span class="meta-prep meta-prep-author">Posted on</span>
@@ -20,29 +20,30 @@
 					</a>
 					<span class="meta-sep">by</span>
 					<span class="author vcard">
-						<a class="url fn n" href="{{ get_author_posts_url(get_the_author_meta('ID')) }}" title="View all posts by {{ post.author.name }}">
-							{{ post.author.name }}
+						<a class="url fn n" href="{{ site.get_author_posts_url(site.get_the_author_meta('ID')) }}" title="View all posts by {{ post.author.name }}">
+							<a href="{{ site.get_author_posts_url( post.post_author ) }}">{{ site.get_the_author_meta('nicename', post.post_author ) }}</a>
+
 						</a>
 					</span>
 				</div>
 
 				<div class="entry-content">
-					{{ post.content }}
-					{{ wp_link_pages({ 'before' : '<div class="page-link">Pages:', 'after' : '</div>' }) }}
+					{{ post.post_content }}
+					{{ site.wp_link_pages({ 'before' : '<div class="page-link">Pages:', 'after' : '</div>' }) }}
 				</div>
 
 				{% if post.author.description %}
 				<div id="entry-author-info">
 					<div id="author-avatar">
 						<!-- This is quite complex
-						<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'twentyten_author_bio_avatar_size', 60 ) ); ?>
+						<?php echo site.get_avatar( site.get_the_author_meta( 'user_email' ), apply_filters( 'twentyten_author_bio_avatar_size', 60 ) ); ?>
 						-->
 					</div>
 					<div id="author-description">
 						<h2>About {{ post.author.name }}</h2>
 						{{ post.author.description }}
 						<div id="author-link">
-							<a href="{{ get_author_posts_url( get_the_author_meta( 'ID' ) ) }}">
+							<a href="{{ site.get_author_posts_url( site.get_the_author_meta( 'ID' ) ) }}">
 								View all posts by {{ post.author.name }} <span class="meta-nav">&rarr;</span>
 							</a>
 						</div>
@@ -59,8 +60,8 @@
 			</div>
 
 			<div id="nav-below" class="navigation">
-				<div class="nav-previous">{{ previous_post_link('%link', '<span class="meta-nav">&larr;</span> %title') }}</div>
-				<div class="nav-next"> {{ next_post_link('%link', '%title <span class="meta-nav">&rarr;</span>') }}</div>
+				<div class="nav-previous">{{ site.previous_post_link('%link', '<span class="meta-nav">&larr;</span> %title') }}</div>
+				<div class="nav-next"> {{ site.next_post_link('%link', '%title <span class="meta-nav">&rarr;</span>') }}</div>
 			</div>
 
 			{% include "comments.php" %}
@@ -68,6 +69,6 @@
 	</div>
 </div>
 
-{{ get_sidebar() }}
+{{ site.get_sidebar() }}
 
 {% endblock %}
