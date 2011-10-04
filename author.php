@@ -16,13 +16,13 @@
 				<div id="author-avatar">
 					{# Complex get avatar function again #}
 					{% set gravatar = site.get_avatar( site.get_the_author_meta( 'user_email' ), site.apply_filters( 'twentyten_author_bio_avatar_size', 60 ) ) %}
-                    {% autoescape false %}
-                        {{ gravatar }}
-                    {% endautoescape %}
+                    {{ gravatar|raw }}
 				</div>
 				<div id="author-description">
-					<h2>About {{ site.the_author_meta('nicename') }}</h2>
-					{{ site.the_author_meta('description') }}
+					<h2>About {{ site.the_author_meta('description', site.get_the_author_meta( 'ID' )) }}</h2>
+					{% if site.the_author_meta('description') is defined %}
+                        {% debug site.get_the_author_meta('description', site.get_the_author_meta('ID')) %}
+                    {% endif %}
 				</div>
 			</div>
 		{% endif %}

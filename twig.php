@@ -468,10 +468,17 @@ function twigTemplates($wpTemplate) {
     $loader = new Twig_Loader_Filesystem(__DIR__);
     $twig = new Twig_Environment($loader, array(
             'cache' => false,
+            'debug' => true,
         ));
     $twig->enableDebug();
+    //var_export($twig::VERSION);
+    //var_export($twig->isDebug());
+    $debugExtension = new Twig_Extensions_Extension_Debug();
+    $twig->addExtension($debugExtension);
+    //var_export($twig->hasExtension('debug'));
     $template = $twig->loadTemplate(basename($wpTemplate));
     $template->display(array('site' => $site, 'posts' => $posts));
+
 }
 
 add_action('template_include', 'twigTemplates');
